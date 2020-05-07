@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<div class="card-deck">
+    {% for function in functions %}
+        <div class="card">
+            <img class="card-img-top" src="{% static function.image %}">
+            <div class="card-body">
+                <h4 class="card-title">{{ function.name }}</h4>
+                <p class="card-text">{{ function.description }}</p>
+            </div>
+            <div class="container">
+                <div class="basic">
+                    {% include "function_op.html" %}
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Operation Time: {% if function.op_time %} {{ function.op_time|default:'' }} {% endif %}{% if function.op_time %}sec{% endif %}</small>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% block operation %}
+{% if "Digital Signature" in function.name %}
+    <div class="basic">
+        {% include "digital_sig.html" %}
+    </div>
+
+{% elif "Secure Hashing" in function.name %}
+    <div class="basic">
+        {% include "hashing.html" %}
+    </div>
+
+{% elif "Watermarking" in function.name %}
+    <div class="basic">
+        {% include "watermarking.html" %}
+    </div>
+
+{% elif "Generate New Keys" in function.name %}
+    <div class="basic">
+        {% include "generateKeys.html" %}
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% block algorthms %}
+
+{% if isDigitalSig %}
+    {% if digital_object.isSigned %}
+        <br>
+        Digital Signature:
+        {{digital_object.sig}}
+    {% else %}
+        <form method='POST' class='ui form' action=''>
+            {% csrf_token %}
+            <label for="private">Paste Private Key:</label>
+            <textarea class='form-control' rows='4' name='private' id ='private' value=''>
+            </textarea>
+            <button type='submit' class="btn btn-primary">Sign</button>
+        </form>
+
+    {% endif %}
+
+
+{% elif isHashing %}
+    {% if hashing_object.isActive %}
+        <br>
+        Hash:
+        {{hashing_object.hash}}
+    {% endif %}
+
+
+{% elif isWatermark %}
+    <form method='POST' class='ui form' action="">
+        {% csrf_token %}
+        <label for="public">Paste Public Key:</label>
+        <textarea class='form-control' rows='5' name='public' id ='public' value='keyInputForm.public'>
+        </textarea>
+
+        <label for="private">Paste Private Key:</label>
+        <textarea class='form-control' rows='5' name='private' id ='private' value='keyInputForm.private'>
+        </textarea>
+        <button type='submit' class="btn btn-primary">Sign</button>
+    </form>
+
+
+{% elif isKeys %}
+    {{ key_object.public }}
+    <br>
+    <br>
+    {{ key_object.private }}
+
+{% endif %}
+{% endblock %}

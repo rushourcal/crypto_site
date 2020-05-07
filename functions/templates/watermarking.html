@@ -1,11 +1,20 @@
 {% block water_block %}
 {% if isWatermark %}
     {% if water_object.isActive %}
-        File: {{ water_object.upload.file.name }}
+        File: 
+        {% if water_object.isValidImg %}
+            {{ water_object.upload.file.name }}
+        {% endif %}
         <div class="container">
             {% include "algorithms.html" %}
         </div>
     {% else %}
+        (Please Upload an Image File)
+        {% if water_object.upload.isFile %}
+            <br> 
+            <br> 
+            *Uploaded File is not a valid Image File.*
+        {% endif %}
         <div class="basic">
                 {% include "upload.html" %}
         </div>

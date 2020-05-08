@@ -22,6 +22,13 @@ def functions_index(request, isDigitalSig=0, isKeys=0, isHashing=0, isWatermark=
         hashing_object.isActive = False
         water_object.isActive = False
         key_object.isActive =False
+        digital_object.upload = UploadFile()
+        water_object.upload = UploadFile()
+        hashing_object.upload = UploadFile()
+        digital_object.save()
+        key_object.save()
+        hashing_object.save()
+        water_object.save()
         
     if request.method == 'POST' and isDigitalSig:
         if digital_object.isActive:
